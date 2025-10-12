@@ -18,7 +18,11 @@ class Mentor:
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
+        self.grades = {}
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
+
+    def __str__(self) -> str:
+        return f'Преподаватель: {self.name} {self.surname}'

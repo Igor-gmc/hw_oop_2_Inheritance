@@ -1,21 +1,18 @@
 from classes.student import Student
 from classes.mentor import Reviewer, Lecturer, Mentor
 
-student_1 = Student('Ruoy', 'Eman', 'your_gender')
-student_1.courses_in_progress += ['Python']
- 
-cool_mentor = Mentor('Some', 'Buddy')
-cool_mentor.courses_attached += ['Python']
- 
-cool_mentor.rate_hw(student_1, 'Python', 10)
-cool_mentor.rate_hw(student_1, 'Python', 10)
-cool_mentor.rate_hw(student_1, 'Python', 10)
- 
-print(student_1.grades)
-
 lecturer = Lecturer('Иван', 'Иванов')
 reviewer = Reviewer('Пётр', 'Петров')
-print(isinstance(lecturer, Mentor)) # True
-print(isinstance(reviewer, Mentor)) # True
-print(lecturer.courses_attached)    # []
-print(reviewer.courses_attached)    # []
+student = Student('Алёхина', 'Ольга', 'Ж')
+ 
+student.courses_in_progress += ['Python', 'Java']
+lecturer.courses_attached += ['Python', 'C++']
+reviewer.courses_attached += ['Python', 'C++']
+ 
+student.rate_lecture(lecturer, 'Python', 7)   # None
+student.rate_lecture(lecturer, 'Java', 8)     # Ошибка
+student.rate_lecture(lecturer, 'С++', 8)      # Ошибка
+student.rate_lecture(reviewer, 'Python', 6)   # Ошибка
+
+print(lecturer.grades)  # {'Python': 7}
+print(lecturer.name, lecturer.surname)         # Преподаватель: Пётр Петров
