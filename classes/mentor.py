@@ -20,9 +20,14 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         self.grades = {}
 
+    def __str__(self) -> str:
+        list_grades = self.grades.values()
+        average_grade = sum(list_grades) / len(list_grades) if list_grades else 0
+        return f'Имя{self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {average_grade:.2f}\n'
+
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
 
     def __str__(self) -> str:
-        return f'Преподаватель: {self.name} {self.surname}'
+        return f'Имя{self.name}\nФамилия: {self.surname}\n'

@@ -15,3 +15,20 @@ class Student:
         else:
             print('Ошибка')
             return 'Ошибка'
+    
+    def __str__(self):
+        if self.grades:
+            list_grades = []
+            for _, val_rgades in self.grades.items():
+                list_grades += val_rgades
+            average_grade = sum(list_grades) / len(list_grades)
+        else:
+            average_grade = 'Оценок еще не было'
+            
+        return  (
+                f"Имя: {self.name}\n"
+                f"Фамилия: {self.surname}\n"
+                f"Средняя оценка за домашние задания: {average_grade}\n"
+                f"Курсы в процессе изучения:{self.courses_in_progress}\n"
+                f"Завершенные курсы:{self.finished_courses}\n"
+        )
