@@ -28,6 +28,20 @@ class Lecturer(Mentor):
         average_grade = sum(list_grades) / len(list_grades) if list_grades else 0       # вычисляем среднюю оценку
         return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {average_grade:.2f}\n'
 
+    # Метод сравнения есть ли лекторов общие курсы
+    def __eq__(self, other)->bool:
+        # Проверяем что other это экземпляр класса Lecturer
+        if not isinstance(other, Lecturer): 
+            print('Ошибка. Сравнение возможно только между лекторами')  
+            return False 
+        # Проверяем есть ли у лекторов общие курсы
+        common_courses = set(self.courses_attached) & set(other.courses_attached)
+        if common_courses:
+            print(f'Общие курсы у лекторов {self.name} {self.surname} и {other.name} {other.surname}: {common_courses}')
+            return True
+        else:
+            print(f'У лекторов {self.name} {self.surname} и {other.name} {other.surname} нет общих курсов')
+            return False
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
