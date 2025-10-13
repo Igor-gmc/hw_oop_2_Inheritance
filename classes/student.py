@@ -1,4 +1,6 @@
 class Student:
+    all_students_list = []                      # Список всех студентов
+
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
@@ -6,6 +8,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
+        Student.all_students_list.append(self)   # Добавляем нового студента в список всех студентов
 
     def rate_lecture(self, lecturer, course, grade):
         # Проверяем, что lecturer - это объект класса Lecturer
@@ -18,7 +21,23 @@ class Student:
         else:
             print('Ошибка') # для отладки
             return 'Ошибка'
+        
+    def average_grade_all_students_and_all_curses(self):
+        list_grades_all_students = []
+        for student in Student.all_students_list:           # проходим по всем студентам в списке всех студентов
+            for _, val_grades in student.grades.items():    # проходим по всем курсам и их оценкам
+                list_grades_all_students += val_grades      # добавляем оценки в общий список
+        average_grade = sum(list_grades_all_students) / len(list_grades_all_students) if list_grades_all_students else 0   # вычисляем среднюю оценку
+        return f'Средняя оценка за домашние задания всех студентов: {average_grade:.2f}'
     
+    def average_grade_student_per_course(self, course):
+        if course in self.grades:
+            list_grades = self.grades[course]                       # получаем список оценок по заданному курсу
+            average_grade = sum(list_grades) / len(list_grades)     # вычисляем среднюю оценку
+            return f'Средняя оценка за домашние задания по курсу {course}: {average_grade:.2f}'
+        else:
+            return f'По курсу {course} еще нет оценок'
+
     def __str__(self):
         if self.grades:
             list_grades = []                                        # создаем пустой список для складирования всех оценок ото всех курсов
