@@ -21,6 +21,14 @@ class Lecturer(Mentor):
         self.grades = {}
 
     def __str__(self) -> str:
+        # Вычисляем среднюю. оценку по кадрому курсу
+        for key_course, val_grades in self.grades.items():
+            if val_grades:
+                average_grade_one_course = sum(val_grades) / len(val_grades)
+                print(f'По курсу: {key_course} у преподавателя {self.name} средняя оценка {average_grade_one_course}')
+            else:
+                print(f'По курсу {key_course} у преподавателя {self.name} пока нет оценок')
+        # Вычисляем среднюю оценку по всем курсам
         list_grades = []                                    # создаем пустой список для складирования всех оценок ото всех курсов
         for _, val_grades in self.grades.items():           # проходим по всем курсам и их оценкам
             list_grades += val_grades                       # добавляем оценки в общий список
