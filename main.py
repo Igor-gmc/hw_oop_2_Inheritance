@@ -32,7 +32,7 @@ reviewer_2.rate_hw(student_1, 'Java', 10)  # None
 
 # Выставляем оценки студенту 2
 reviewer_1.rate_hw(student_2, 'С++', 9)  # None
-reviewer_2.rate_hw(student_2, 'Java', 8)  # None
+reviewer_2.rate_hw(student_2, 'Java', 10)  # None
 reviewer_2.rate_hw(student_2, 'Java', 10)  # None
 reviewer_2.rate_hw(student_2, 'С++', 7)  # None
  
@@ -47,10 +47,12 @@ student_2.rate_lecture(lecturer_2, 'C++', 10)  # None
 student_2.rate_lecture(lecturer_2, 'Python', 10)  # Ошибка
 
 print('\n=======================================\n')
-# Вывод информации по общим курсам лекторов
-lecturer_1 == lecturer_2
+# __eq__ Вывод информации по общим курсам лекторов
+print('Вывод информации по общим курсам лекторов')
+print(lecturer_1 == lecturer_2)
 
 print('\n=======================================\n')
+print('Вывод средних оценок студентов по каждому курсу и среднее по всем курсам\n')
 for student in Student.all_students_list:
     print(student)                                          # Вывод информации по всем студентам
     # Расчитаем среднюю оценку по каждому курсу студента
@@ -60,15 +62,25 @@ for student in Student.all_students_list:
 
 print(student.average_grade_all_students_and_all_curses())  # Вывод средней оценки по всем студентам и всем курсам
 print('\n=======================================\n')
-#  Вывод лучшего студента по каждому курсу
 
+#  __gt__ Вывод лучшего студента по каждому текущему курсу
+print('Вывод лучшего студента по каждому текущему курсу\n')
+print('Проверка на ошибку: ', student_1 > student_2)
+print('Проверка без ошибки: ', student_2 > student_1)
 print('\n=======================================\n')
-#  Вывод отстающего студента по каждому курсу
 
+# __lt__ Выявим отстающего студента в среднем по всем курсам
+print('\nВывод отстающего студента в среднем по всем курсам\n')
+print('Проверка без ошибки: ', student_1 < student_2)
+print('Проверка с ошибкой: ', student_2 < student_1)
+
+# Вывод преподавателей по ролям
 print('\n=======================================\n')
+print('Вывод лекторов:')
 print(lecturer_1)
 print(lecturer_2)
 print('\n=======================================\n')
+print('Вывод проверяющих преподавателей:')
 print(reviewer_1)
 print(reviewer_2)
 print('\n=======================================\n')

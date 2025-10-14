@@ -1,0 +1,40 @@
+{
+    // === ✅ IntelliSense (встроенные подсказки VS Code) ===
+    "editor.suggestOnTriggerCharacters": true, // Автоподсказки при '.', '(', и т.д.
+    "editor.quickSuggestions": { // Автоматические предложения при наборе
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.quickSuggestionsDelay": 100,
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.wordBasedSuggestionsMode": "matchingDocuments",
+    "editor.suggest.localityBonus": true, // Предлагать ближайшие по контексту символы
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.suggest.matchOnWordStartOnly": true,
+    // === 🧩 Показывать все типы IntelliSense предложений ===
+    "editor.suggest.showClasses": true,
+    "editor.suggest.showFunctions": true,
+    "editor.suggest.showMethods": true,
+    "editor.suggest.showModules": true,
+    "editor.suggest.showKeywords": true,
+    "editor.suggest.showProperties": true,
+    "editor.suggest.showFields": true,
+    "editor.suggest.showVariables": true,
+    "editor.suggest.showSnippets": true,
+    "editor.suggest.showConstructors": true,
+    "editor.suggest.showInterfaces": true,
+    "editor.suggest.showEvents": true,
+    "editor.suggest.showConstants": true,
+    "editor.suggest.showValues": true,
+    // === 🚫 Copilot: запретить авто-подсказки ===
+    "editor.inlineSuggest.enabled": false,
+    "github.copilot.inlineSuggest.enable": false,
+    "github.copilot.editor.enableAutoCompletions": false,
+    // === 🔘 Copilot только вручную (по хоткею) ===
+    "github.copilot.enable": {
+        "*": false,
+        "python": true
+    },
+    "github.copilot.suggestionShowOnTriggerOnly": true
+}
