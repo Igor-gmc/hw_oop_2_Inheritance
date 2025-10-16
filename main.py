@@ -11,76 +11,56 @@ reviewer_2 = Reviewer('Николай', 'Николаев')
 student_1 = Student('Алена', 'Алехина', 'Ж')
 student_2 = Student('Василий', 'Васильев', 'М')
 
-
-# Вносим данные по курсам студента
+# Курсы студентов
 student_1.courses_in_progress += ['Python', 'Java']
 student_1.finished_courses += ['Введение в программирование']
 student_2.courses_in_progress += ['C++', 'Java']
 student_2.finished_courses += ['Введение в программирование', 'Python']
 
-# Записываем курсы для лекеторов и проверяющих
+# Курсы лекторов и проверяющих
 lecturer_1.courses_attached += ['Python', 'Java']
-reviewer_1.courses_attached += ['Python', 'C++']    # Проверку С++ менторы могут проводить по очереди, сначала один преподаватель
 lecturer_2.courses_attached += ['C++', 'Java']
-reviewer_2.courses_attached += ['Java', 'C++']      # а потом другой
+reviewer_1.courses_attached += ['Python', 'C++']
+reviewer_2.courses_attached += ['Java', 'C++']
 
-# Выставляем оценки студенту 1
-reviewer_1.rate_hw(student_1, 'Python', 10)  # None
-reviewer_1.rate_hw(student_1, 'Python', 5)  # None
-reviewer_2.rate_hw(student_1, 'Java', 8)  # None
-reviewer_2.rate_hw(student_1, 'Java', 10)  # None
+# Проверяющие оценивают студентов
+reviewer_1.rate_hw(student_1, 'Python', 10)
+reviewer_1.rate_hw(student_1, 'Python', 5)
+reviewer_2.rate_hw(student_1, 'Java', 8)
+reviewer_2.rate_hw(student_1, 'Java', 10)
 
-# Выставляем оценки студенту 2
-reviewer_1.rate_hw(student_2, 'С++', 9)  # None
-reviewer_2.rate_hw(student_2, 'Java', 10)  # None
-reviewer_2.rate_hw(student_2, 'Java', 10)  # None
-reviewer_2.rate_hw(student_2, 'С++', 7)  # None
- 
-# Выставляем оценки лектору
-student_1.rate_lecture(lecturer_1, 'Python', 7)   # None
-student_1.rate_lecture(lecturer_1, 'Java', 8)     # None
-student_1.rate_lecture(lecturer_1, 'С++', 8)      # Ошибка
+reviewer_1.rate_hw(student_2, 'C++', 9)
+reviewer_2.rate_hw(student_2, 'Java', 10)
+reviewer_2.rate_hw(student_2, 'Java', 10)
+reviewer_2.rate_hw(student_2, 'C++', 7)
 
-student_2.rate_lecture(lecturer_1, 'Java', 6)   # None
-student_2.rate_lecture(lecturer_2, 'Java', 9)   # None
-student_2.rate_lecture(lecturer_2, 'C++', 10)  # None
-student_2.rate_lecture(lecturer_2, 'Python', 10)  # Ошибка
+# Студенты оценивают лекторов
+student_1.rate_lecture(lecturer_1, 'Python', 7)
+student_1.rate_lecture(lecturer_1, 'Java', 8)
+student_2.rate_lecture(lecturer_1, 'Java', 6)
+student_2.rate_lecture(lecturer_2, 'Java', 9)
+student_2.rate_lecture(lecturer_2, 'C++', 10)
 
-print('\n=======================================\n')
-# __eq__ Вывод информации по общим курсам лекторов
-print('Вывод информации по общим курсам лекторов')
-print(lecturer_1 == lecturer_2)
+# --- Тестирование функционала ---
+print('\n=== Сравнение лекторов по средней оценке ===')
+print(f"lecturer_1 > lecturer_2: {lecturer_1 > lecturer_2}")
+print(f"lecturer_1 < lecturer_2: {lecturer_1 < lecturer_2}")
+print(f"lecturer_1 == lecturer_2: {lecturer_1 == lecturer_2}")
 
-print('\n=======================================\n')
-print('Вывод средних оценок студентов по каждому курсу и среднее по всем курсам\n')
+print('\n=== Список студентов ===')
 for student in Student.all_students_list:
-    print(student)                                          # Вывод информации по всем студентам
-    # Расчитаем среднюю оценку по каждому курсу студента
-    for course in student.courses_in_progress:
-        print(student.average_grade_student_per_course(course))  # Вывод средней оценки по каждому курсу студента
-    print('\n---------------------------------------\n')
+    print(student)
 
-print(student.average_grade_all_students_and_all_curses())  # Вывод средней оценки по всем студентам и всем курсам
-print('\n=======================================\n')
+print(f"\nСредняя оценка всех студентов: {Student.average_grade_all_students():.2f}")
 
-#  __gt__ Вывод лучшего студента по каждому текущему курсу
-print('Вывод лучшего студента по каждому текущему курсу\n')
-print('Проверка на ошибку: ', student_1 > student_2)
-print('Проверка без ошибки: ', student_2 > student_1)
-print('\n=======================================\n')
+print('\n=== Сравнение студентов ===')
+print(f"student_1 > student_2: {student_1 > student_2}")
+print(f"student_1 < student_2: {student_1 < student_2}")
 
-# __lt__ Выявим отстающего студента в среднем по всем курсам
-print('\nВывод отстающего студента в среднем по всем курсам\n')
-print('Проверка без ошибки: ', student_1 < student_2)
-print('Проверка с ошибкой: ', student_2 < student_1)
-
-# Вывод преподавателей по ролям
-print('\n=======================================\n')
-print('Вывод лекторов:')
+print('\n=== Лекторы ===')
 print(lecturer_1)
 print(lecturer_2)
-print('\n=======================================\n')
-print('Вывод проверяющих преподавателей:')
+
+print('\n=== Проверяющие ===')
 print(reviewer_1)
 print(reviewer_2)
-print('\n=======================================\n')
